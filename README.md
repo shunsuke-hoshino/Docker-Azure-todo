@@ -93,4 +93,4 @@ git push
 git checkout -b デプロイ
 ```
 
-[デプロイの資料](https://github.com/takatoshiinaoka/hosino-todo/blob/%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4/README.md)
+[デプロイの資料](https://github.com/takatoshiinaoka/hosino-todo/tree/%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
