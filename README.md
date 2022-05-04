@@ -1,8 +1,5 @@
 # CI/CD
-
-
-## Githubの確認
-まずは、 **最新のコードがGithubにプッシュ** できているか確認。
+まずは、 **最新のコードがGithubにプッシュ** できているか確認しましょう。
 
 ## デプロイセンターの設定
 * App Service/デプロイセンター で 「Github Actions」 を選択。
@@ -24,6 +21,9 @@
 
 ToDoアプリのブランチを作成移動し、次の資料に進みましょう。
 ```
+git add .
+git commit -m "deploy done"
+git push
 git checkout -b ToDoアプリ
 ```
 
