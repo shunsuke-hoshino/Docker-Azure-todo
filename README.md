@@ -1,39 +1,35 @@
 # hosino-todo
 
-## Djangoプロジェクト作成
-以下のコマンドでpythonイメージから作成されたコンテナでDjangoのプロジェクトを作成する。
+## Azure Container Registory作成
+Azureで「コンテナレジストリ」と検索し、作成します。
+
+リソースグループは新規作成。
+
+## ローカルでDockerイメージ作成 &レジストリログイン &プッシュ
+「hello-world」という**タグ**をつけてビルドを実行。dockerイメージを作成。
 ```
-docker compose run web django-admin.py startproject hosinoproject .
-```
-## Djangoアプリ作成
-以下のコマンドでDjangoのアプリを作成する。
-```
-docker compose run web django-admin.py startapp hosinoapp 
+docker build -t hello-world . 
 ```
 
-# シェルスクリプト実行権限付与
-docker-compose.ymlがstartup.shを実行できるように権限を付与します。
+コンテナレジストリにログイン
 ```
-chmod +x startup.sh 
-```
-## 生成されたファイルの所有者を変更
-いるかわからんが
-```
-sudo chown -R $USER:$USER .
+docker login hosinotodo.azurecr.io
 ```
 
-## サーバホストを指定
-ホストヘッダー攻撃対策で、ALLOWED_HOSTSにはWebサービスを提供するドメイン名を指定する必要があります。ついでに言語とタイムゾーンも指定。
-```
-ALLOWED_HOSTS = ['*']
-:
-LANGUAGE_CODE = 'ja'
-TIME_ZONE = 'Asia/Tokyo'
-```
+レジストリにプッシュする
 
-## ロケット打ち上げ成功！！
-```
-docker compose build 
-dokcer compose up
-docker compose down
-```
+## リポジトリ確認
+Azureの ホーム>コンテナレジストリ>レジストリ名 のリポジトリに自分のイメージがプッシュされているか確認する。
+
+# Web appの作成
+Azureで、リソースの作成→Webアプリ 作成
+
+リソースグループはコンテナレジストリと同じものを使用しましょう。
+
+公開 は、Dockerコンテナーを選択しましょう。
+
+Dockerに移動し、先ほどプッシュしたイメージを選択。
+
+起動するまでに少し時間がかかりますが、これでデプロイ先でもロケット打ち上げ成功です。
+
+# Hello world
