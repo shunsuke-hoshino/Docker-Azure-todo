@@ -22,9 +22,9 @@
 ToDoアプリのブランチを作成移動し、次の資料に進みましょう。
 ```
 git add .
-git commit -m "deploy done"
+git commit -m "ci/cd done"
 git push
 git checkout -b ToDoアプリ
 ```
 
-next:[ToDoアプリの資料](https://github.com/takatoshiinaoka/hosino-todo/blob/ToDo%E3%82%A2%E3%83%97%E3%83%AA/README.md)
+next: [ToDoアプリの資料](https://github.com/takatoshiinaoka/hosino-todo/blob/ToDo%E3%82%A2%E3%83%97%E3%83%AA/README.md)
