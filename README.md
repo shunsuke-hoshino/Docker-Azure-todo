@@ -143,4 +143,12 @@ docker push レジストリ名.azurecr.io/hello-world-2
 ## 次へ
 次はCI/CIです。
 
+ToDoアプリのブランチを作成移動し、次の資料に進みましょう。
+```
+git add .
+git commit -m "deploy done"
+git push
+git checkout -b CI/CD
+```
+
 [CI/CDの資料](https://github.com/takatoshiinaoka/hosino-todo/blob/CI/CD/README.md)
