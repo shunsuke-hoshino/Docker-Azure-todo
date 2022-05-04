@@ -1,7 +1,7 @@
 #  デプロイ
-* ACRの作成
-* App Serviceの作成
-* 表示の変更
+* AzureのACRでレジストリを作成し、Dockerイメージのプッシュ
+* AzureのApp Service　for Containerを作成し、デプロイ
+* 表示をロケットから、Hello Worldへ変更
 
 
 ----
