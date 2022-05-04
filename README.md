@@ -33,3 +33,86 @@ Dockerに移動し、先ほどプッシュしたイメージを選択。
 起動するまでに少し時間がかかりますが、これでデプロイ先でもロケット打ち上げ成功です。
 
 # Hello world
+次に、ロケットの画面ではなく、「Helloworld」と表示されるように変更します。
+
+apps.pyに記述された、アプリ名をsettings.pyに登録します。
+
+↓アプリ/apps.py
+```
+name = 'アプリ名'
+```
+
+↓プロジェクト/settings.py
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    #追加
+    'アプリ名',
+]
+```
+
+----
+
+次にルーティングの設定を行います。
+サーバにアクセスされた時にアプリのurls.pyを使用する設定を記入します。
+
+プロジェクト/urls.py
+```
+from django.contrib import admin
+from django.urls import path, include # include 追加
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # 追加
+    path('', include('アプリ名.urls')),
+]
+```
+----
+サーバにアクセス→プロジェクトのurls→アプリのurls の流れですが、アプリのurlsが無いので新規作成します。
+
+↓コマンドでファイルを新規作成。GUIで作成してもOKです。
+```
+touch アプリ名/urls.py
+```
+----
+サーバに、https://サーバドメイン/hello のアクセスが来たら
+
+views.pyのindex()関数を呼び出すように設定します。
+
+↓アプリ名/urls.py
+```
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('hello', views.index),
+]
+```
+----
+views.pyにindex())関数の処理を記述します。
+
+↓アプリ名/viwes.py
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse('Hello World')
+```
+
+----
+変更を確認してみましょう。
+
+```
+docker compose up
+```
+を実行し、[localhost:8000/hello](http://localhost:8000/hello)にアクセス。
+
+「Hello World」と表示できたら成功です。
+
