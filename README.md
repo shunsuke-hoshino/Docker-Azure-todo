@@ -1,11 +1,11 @@
-# hosino-todo
+#  デプロイ
 ## Azure Container Registory作成
 Azureで「コンテナレジストリ」と検索し、作成します。
 
 リソースグループは新規作成。
 
 ## ローカルでDockerイメージ作成 &レジストリログイン &プッシュ
-「hello-world」という**タグ**をつけてビルドを実行。dockerイメージを作成。
+「hello-world」という**タグ**をつけてビルドを実行し、dockerイメージを作成。
 
 ```
 docker build -t hello-world . 
@@ -23,7 +23,9 @@ docker push レジストリ名.azurecr.io/hello-world
 ```
 
 ## リポジトリ確認
-Azureの ホーム>コンテナレジストリ>レジストリ名 のリポジトリに自分のイメージがプッシュされているか確認する。
+Azureの ホーム > コンテナレジストリ > レジストリ名  に移動
+
+リポジトリに自分のイメージがプッシュされているか確認する。
 
 # Web appの作成
 Azureで、リソースの作成→Webアプリ 作成
@@ -32,11 +34,13 @@ Azureで、リソースの作成→Webアプリ 作成
 
 Dockerに移動し、先ほどプッシュしたイメージを選択。
 
-ここで、環境変数の設定を行います。
+## 環境変数の設定
 
-App Serviceの構成から「新しいアプリケーションの設定」をクリックし、docker-compose.ymlに書かれている SECRET_KEY を設置します。
+App Serviceの構成→「新しいアプリケーションの設定」に、docker-compose.ymlに書かれている SECRET_KEY を設定します。
 
+## 確認
 起動するまでに少し時間がかかりますが、これでデプロイ先でもロケット打ち上げ成功です。
+
 
 # Hello world
 次に、ロケットの画面ではなく、「Helloworld」と表示されるように変更します。
@@ -63,7 +67,7 @@ INSTALLED_APPS = [
 ```
 
 ----
-
+## ルーティングの設定１
 次にルーティングの設定を行います。
 サーバにアクセスされた時にアプリのurls.pyを使用する設定を記入します。
 
@@ -79,6 +83,7 @@ urlpatterns = [
 ]
 ```
 ----
+## ルーティングの設定２
 サーバにアクセス→プロジェクトのurls→アプリのurls の流れですが、アプリのurlsが無いので新規作成します。
 
 ↓コマンドでファイルを新規作成。GUIで作成してもOKです。
@@ -86,6 +91,7 @@ urlpatterns = [
 touch アプリ名/urls.py
 ```
 ----
+## ルーティングの設定３
 サーバに、https://サーバドメイン/hello のアクセスが来たら
 
 views.pyのindex()関数を呼び出すように設定します。
@@ -101,6 +107,7 @@ urlpatterns = [
 ]
 ```
 ----
+## viewsの関数を作成
 views.pyにindex())関数の処理を記述します。
 
 ↓アプリ名/viwes.py
@@ -113,6 +120,7 @@ def index(request):
 ```
 
 ----
+## 動作確認
 変更を確認してみましょう。
 
 ```
@@ -123,7 +131,7 @@ docker compose up
 「Hello World」と表示できたら成功です。
 
 ----
-では、もう一度デプロイをしてみましょう。
+では、もう一度デプロイをしてみましょう。 ※hello-world-2 に注意
 ```
 docker build -t hello-world .
 docker tag hello-world レジストリ名.azurecr.io/hello-world-2
