@@ -1,11 +1,33 @@
 # hosino-todo
 
+## Djangoプロジェクト作成
 以下のコマンドでpythonイメージから作成されたコンテナでDjangoのプロジェクトを作成する。
 ```
 docker compose run web django-admin.py startproject hosinoproject .
 ```
-
+## Djangoアプリ作成
 以下のコマンドでDjangoのアプリを作成する。
 ```
 docker compose run web django-admin.py startapp hosinoapp 
+```
+
+# シェルスクリプト実行権限付与
+docker-compose.ymlがstartup.shを実行できるように権限を付与します。
+```
+chmod +x startup.sh 
+```
+## 生成されたファイルの所有者を変更
+いるかわからんが
+```
+sudo chown -R $USER:$USER .
+```
+
+## サーバホストを指定
+ALLOWED_HOSTS = ['*']
+
+## ロケット打ち上げ成功！！
+```
+docker compose build 
+dokcer compose up
+docker compose down
 ```
