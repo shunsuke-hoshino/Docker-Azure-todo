@@ -17,6 +17,10 @@ docker login hosinotodo.azurecr.io
 ```
 
 レジストリにプッシュする
+```
+docker tag hello-world レジストリ名.azurecr.io/hello-world
+docker push レジストリ名.azurecr.io/hello-world
+```
 
 ## リポジトリ確認
 Azureの ホーム>コンテナレジストリ>レジストリ名 のリポジトリに自分のイメージがプッシュされているか確認する。
@@ -116,3 +120,16 @@ docker compose up
 
 「Hello World」と表示できたら成功です。
 
+----
+では、もう一度デプロイをしてみましょう。
+```
+docker build -t hello-world .
+docker tag hello-world レジストリ名.azurecr.io/hello-world-2
+docker push レジストリ名.azurecr.io/hello-world-2
+```
+今回は、前回からの差分のみプッシュされるので、すぐに終わります。
+
+----
+先ほど作成した、App Serviceに移動します。
+
+デプロイセンターに移動し、イメージで「hello-world-2」を選択し、**保存**します。
