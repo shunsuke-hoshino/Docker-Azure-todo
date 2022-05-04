@@ -23,7 +23,13 @@ sudo chown -R $USER:$USER .
 ```
 
 ## サーバホストを指定
+ついでに言語とタイムゾーンも指定。
+```
 ALLOWED_HOSTS = ['*']
+:
+LANGUAGE_CODE = 'ja'
+TIME_ZONE = 'Asia/Tokyo'
+```
 
 ## ロケット打ち上げ成功！！
 ```
