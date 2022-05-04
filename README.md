@@ -139,3 +139,8 @@ docker push レジストリ名.azurecr.io/hello-world-2
 設定が保存されると再デプロイされます。デプロイするのに時間がかかります。
 
 デプロイが終わると、https://サーバドメイン/hello にアクセスし、「Hello World」と表示されたら成功です。
+
+## 次へ
+次はCI/CIです。
+
+[CI/CDの資料](https://github.com/takatoshiinaoka/hosino-todo/blob/CI/CD/README.md)
