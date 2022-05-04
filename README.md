@@ -1,5 +1,4 @@
 # hosino-todo
-
 ## Azure Container Registory作成
 Azureで「コンテナレジストリ」と検索し、作成します。
 
@@ -7,6 +6,7 @@ Azureで「コンテナレジストリ」と検索し、作成します。
 
 ## ローカルでDockerイメージ作成 &レジストリログイン &プッシュ
 「hello-world」という**タグ**をつけてビルドを実行。dockerイメージを作成。
+
 ```
 docker build -t hello-world . 
 ```
