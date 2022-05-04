@@ -9,7 +9,6 @@ services:
       POSTGRES_PASSWORD: postgres
   web:
     build: .
-    # command:  ["./startup.sh"]
     volumes:
       - .:/code
     ports:
@@ -17,7 +16,6 @@ services:
     depends_on:
       - db
     environment:
-      # - NODE_ENV=development
       - DB_USER=postgres
       - DB_NAME=postgres
       - DB_PASSWORD=postgres
