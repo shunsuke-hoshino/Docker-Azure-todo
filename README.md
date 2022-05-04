@@ -82,7 +82,7 @@ urlpatterns = [
     path('', include('アプリ名.urls')),
 ]
 ```
-----
+
 ## ルーティングの設定２
 サーバにアクセス→プロジェクトのurls→アプリのurls の流れですが、アプリのurlsが無いので新規作成します。
 
@@ -90,7 +90,7 @@ urlpatterns = [
 ```
 touch アプリ名/urls.py
 ```
-----
+
 ## ルーティングの設定３
 サーバに、https://サーバドメイン/hello のアクセスが来たら
 
@@ -106,7 +106,7 @@ urlpatterns = [
     path('hello', views.index),
 ]
 ```
-----
+
 ## viewsの関数を作成
 views.pyにindex())関数の処理を記述します。
 
@@ -119,7 +119,7 @@ def index(request):
     return HttpResponse('Hello World')
 ```
 
-----
+
 ## 動作確認
 変更を確認してみましょう。
 
@@ -130,7 +130,7 @@ docker compose up
 
 「Hello World」と表示できたら成功です。
 
-----
+## 再デプロイ
 では、もう一度デプロイをしてみましょう。 ※hello-world-2 に注意
 ```
 docker build -t hello-world .
@@ -139,7 +139,6 @@ docker push レジストリ名.azurecr.io/hello-world-2
 ```
 今回は、前回からの差分のみプッシュされるので、すぐに終わります。
 
-----
 先ほど作成した、App Serviceに移動します。
 
 デプロイセンターに移動し、イメージで「hello-world-2」を選択し、**保存**します。
@@ -147,6 +146,8 @@ docker push レジストリ名.azurecr.io/hello-world-2
 設定が保存されると再デプロイされます。デプロイするのに時間がかかります。
 
 デプロイが終わると、https://サーバドメイン/hello にアクセスし、「Hello World」と表示されたら成功です。
+
+----
 
 ## 次へ
 次はCI/CIです。
