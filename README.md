@@ -1,4 +1,4 @@
-# hosino-todo
+# 環境構築
 
 ## Djangoプロジェクト作成
 以下のコマンドでpythonイメージから作成されたコンテナでDjangoのプロジェクトを作成する。
@@ -11,7 +11,7 @@ docker compose run web django-admin.py startproject hosinoproject .
 docker compose run web django-admin.py startapp hosinoapp 
 ```
 
-# シェルスクリプト実行権限付与
+## シェルスクリプト実行権限付与
 docker-compose.ymlがstartup.shを実行できるように権限を付与します。
 ```
 chmod +x startup.sh 
