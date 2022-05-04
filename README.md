@@ -169,4 +169,4 @@ git push
 git checkout -b CI/CD
 ```
 
-[CI/CDの資料](https://github.com/takatoshiinaoka/hosino-todo/blob/CI/CD/README.md)
+[CI/CDの資料](https://github.com/takatoshiinaoka/hosino-todo/tree/CI/CD)
