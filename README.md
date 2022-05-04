@@ -143,7 +143,7 @@ docker push レジストリ名.azurecr.io/hello-world-2
 ## 次へ
 次はCI/CIです。
 
-ToDoアプリのブランチを作成移動し、次の資料に進みましょう。
+ブランチを切り替えて、次の資料に進みましょう。
 ```
 git add .
 git commit -m "deploy done"
