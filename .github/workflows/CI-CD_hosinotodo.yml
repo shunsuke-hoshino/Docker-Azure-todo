@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - hosinotodo
+
+on:
+  push:
+    branches:
+      - CI/CD
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://hosinotodo.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_cfa90b77426b4850814cd376bf5c5175 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_6b8146b23dc644528d6750f32f0e2c82 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: hosinotodo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cfa90b77426b4850814cd376bf5c5175 }}/hosino-todo:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'hosinotodo'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_63365004a59a4675a228a2851986bd0b }}
+        images: 'hosinotodo.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cfa90b77426b4850814cd376bf5c5175 }}/hosino-todo:${{ github.sha }}'
